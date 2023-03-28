@@ -3,8 +3,36 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { FC } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const PropertyCard = () => (
+  <div className="card w-96 bg-secondary shadow-xl">
+    <div className="card-body">
+      <h2 className="card-title">Card title!</h2>
+      <p>If a dog chews shoes whose shoes does he choose?</p>
+    </div>
+  </div>
+);
+
+interface filterType {
+  id: number;
+}
+
+const Filter: FC<filterType> = ({ id }) => (
+  <select className="select select-bordered max-w-xs">
+    <option disabled selected>
+      Filter {id}
+    </option>
+    <option>Option 1</option>
+    <option>Option 2</option>
+    <option>Option 3</option>
+  </select>
+);
+
+const PropertyData = [1, 3, 4, 5, 5, 6, 6, 6, 9, 0, 0, 23, 32];
+const FilterData = [1, 3, 4, 5, 5];
 
 export default function Home() {
   return (
@@ -17,7 +45,23 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <NavBar />
-      <main className="w-screen h-screen"></main>
+      <main className="w-screen h-screen flex flex-col gap-4 p-10 mt-5 ">
+        <div className="w-full h-[10%] px-5 flex items-center ">
+          <div className=" h-full border-primary rounded-lg flex px-5 items-center gap-4 ">
+            {FilterData.map((fish, id) => (
+              <Filter id={id} key={id} />
+            ))}
+          </div>
+          <button className="btn hover:bg-primary-active btn-primary flex-1 mr-5 text-lg ">
+            Search
+          </button>
+        </div>
+        <div className="flex  w-full  flex-wrap gap-5 p-5 justify-center h-[80%] overflow-scroll ">
+          {PropertyData.map((fish, id) => (
+            <PropertyCard key={id} />
+          ))}
+        </div>
+      </main>
       <Footer />
     </>
   );

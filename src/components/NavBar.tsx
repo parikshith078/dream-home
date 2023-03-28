@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaUserAlt } from "react-icons/fa";
 
 const NavBar = () => {
   return (
@@ -29,7 +30,7 @@ const NavBar = () => {
               <a>Homepage</a>
             </li>
             <li>
-              <a>Portfolio</a>
+              <a>Profile</a>
             </li>
             <li>
               <a>About</a>
@@ -38,7 +39,9 @@ const NavBar = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost normal-case text-xl">Dream Home</a>
+        <a href="#" className="btn btn-ghost normal-case text-xl">
+          Dream Home
+        </a>
       </div>
       <div className="navbar-end gap-2">
         <button className="btn btn-ghost btn-circle">
@@ -57,8 +60,8 @@ const NavBar = () => {
             />
           </svg>
         </button>
-        <button className="btn btn-ghost btn-circle text-[24px] bg-primary-content text-primary">
-          P
+        <button className="btn btn-ghost btn-circle text-lg bg-primary ">
+          <FaUserAlt />
         </button>
       </div>
     </div>
