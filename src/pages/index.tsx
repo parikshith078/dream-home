@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +16,9 @@ export default function Home() {
         {/* TODO: Add favicon */}
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <main className=" underline font-bold">Are you working</main>
+      <NavBar />
+      <main className="w-screen h-screen"></main>
+      <Footer />
     </>
   );
 }
