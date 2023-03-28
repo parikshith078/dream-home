@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 const PropertyCard = () => (
   <div className="card w-96 bg-secondary shadow-xl">
     <div className="card-body">
-      <h2 className="card-title">Card title!</h2>
-      <p>If a dog chews shoes whose shoes does he choose?</p>
+      <h2 className="card-title">Property title</h2>
+      <p>Property Info</p>
     </div>
   </div>
 );
@@ -46,13 +46,13 @@ export default function Home() {
       </Head>
       <NavBar />
       <main className="w-screen h-screen flex flex-col gap-4 p-10 mt-5 ">
-        <div className="w-full h-[10%] px-5 flex items-center ">
-          <div className=" h-full border-primary rounded-lg flex px-5 items-center gap-4 ">
+        <div className="w-full  px-5 flex lg:flex-row sm:flex-col gap-3 items-center ">
+          <div className=" h-full border-primary rounded-lg flex px-5 items-center gap-4 flex-wrap ">
             {FilterData.map((fish, id) => (
               <Filter id={id} key={id} />
             ))}
           </div>
-          <button className="btn hover:bg-primary-active btn-primary flex-1 mr-5 text-lg ">
+          <button className="btn hover:bg-primary-active btn-primary lg:flex-1 mr-5 text-lg sm:w-[90%] ">
             Search
           </button>
         </div>
