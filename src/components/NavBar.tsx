@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaUserAlt } from "react-icons/fa";
 
 const NavBar = () => {
@@ -27,24 +28,24 @@ const NavBar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary rounded-box w-52"
           >
             <li>
-              <a>Homepage</a>
+              <Link href="/register">Register</Link>
             </li>
             <li>
-              <a>Profile</a>
+              <Link href="/lease">Lease</Link>
             </li>
             <li>
-              <a>About</a>
+              <Link href="/about">About</Link>
             </li>
           </ul>
         </div>
       </div>
       <div className="navbar-center">
-        <a href="#" className="btn btn-ghost normal-case text-xl">
+        <Link href="/" className="btn btn-ghost normal-case text-xl">
           Dream Home
-        </a>
+        </Link>
       </div>
       <div className="navbar-end gap-2">
-        <button className="btn btn-ghost btn-circle">
+        <Link href="/search" className="btn btn-ghost btn-circle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -59,10 +60,13 @@ const NavBar = () => {
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>
-        </button>
-        <button className="btn btn-ghost btn-circle text-lg bg-primary ">
+        </Link>
+        <Link
+          href="/profile"
+          className="btn btn-ghost btn-circle text-lg bg-primary "
+        >
           <FaUserAlt />
-        </button>
+        </Link>
       </div>
     </div>
   );
