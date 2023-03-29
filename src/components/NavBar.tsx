@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaUserAlt } from "react-icons/fa";
 
 const NavBar = () => {
@@ -39,9 +40,9 @@ const NavBar = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <a href="#" className="btn btn-ghost normal-case text-xl">
+        <Link href="/" className="btn btn-ghost normal-case text-xl">
           Dream Home
-        </a>
+        </Link>
       </div>
       <div className="navbar-end gap-2">
         <button className="btn btn-ghost btn-circle">

@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: "450px",
+      },
+    },
   },
   plugins: [require("daisyui")],
 };
