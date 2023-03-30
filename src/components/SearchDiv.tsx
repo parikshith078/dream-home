@@ -23,7 +23,7 @@ interface filterType {
 }
 
 const Filter: FC<filterType> = ({ id }) => (
-  <select className="select select-bordered max-w-xs">
+  <select defaultValue="test" className="select select-bordered max-w-xs">
     <option disabled selected>
       Filter {id}
     </option>
