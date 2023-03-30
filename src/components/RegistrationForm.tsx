@@ -6,8 +6,8 @@ const RegistrationForm: FC<{
   title: string;
 }> = ({ title }) => {
   return (
-    <div className="flex justify-center w-full mt-16">
-      <div className="flex border-solid border-[1px] border-white shadow-lg rounded-lg flex-col items-center xs:w-[80%] gap-3 py-4 lg:w-[30%]">
+    <div className="flex justify-center w-full xs:mt-5 lg:mt-10">
+      <div className="flex border-solid border-[1px] mx-10 lg:mx-96 xs:mx-2 px-2 border-white shadow-lg rounded-lg flex-col items-center w-full gap-3 py-4 ">
         <h1 className="text-2xl font-bold my-4">{title}</h1>
         {INPUT_INFO.map((data, id) =>
           data ? (

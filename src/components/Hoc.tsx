@@ -5,8 +5,10 @@ const Hoc = (props: any) => {
   return (
     <>
       <NavBar />
-      <main className="w-screen h-screen">{props.children}</main>
-      <Footer />
+      <div className=" absolute top-14">
+        <main className="w-screen h-screen mb-10  ">{props.children}</main>
+        <Footer />
+      </div>
     </>
   );
 };
