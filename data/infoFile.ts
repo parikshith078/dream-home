@@ -5,3 +5,5 @@ export const FormTypes = [
   "Lease",
   "Property",
 ];
+
+export const LeaseIndex = FormTypes.indexOf("Lease");
