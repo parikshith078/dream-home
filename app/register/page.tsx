@@ -1,7 +1,20 @@
+import MainBtn from "../../components/MianBtn";
 import RegistrationForm from "../../components/RegistrationForm";
+import { FormTypes } from "../../data/infoFile";
 
 const RegisterPage = () => {
-  return <RegistrationForm title="Staff Reg" />;
+  return (
+    <div className=" w-full  xs:h-[80%] lg:mt-10 xs:mt-40 p-10 flex lg:flex-wrap justify-center lg:flex-row xs:flex-col gap-3">
+      {FormTypes.map((txt, id) => (
+        <MainBtn
+          style="btn-secondary"
+          link={`register/${id}`}
+          text={txt}
+          key={id}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default RegisterPage;
