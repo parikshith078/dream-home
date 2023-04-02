@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaUserAlt } from "react-icons/fa";
+import { LeaseIndex } from "../data/infoFile";
 
 const NavBar = () => {
   return (
@@ -31,7 +32,7 @@ const NavBar = () => {
               <Link href="/register">Register</Link>
             </li>
             <li>
-              <Link href="/lease">Lease</Link>
+              <Link href={`/register/${LeaseIndex}`}>Lease</Link>
             </li>
             <li>
               <Link href="/about">About</Link>
