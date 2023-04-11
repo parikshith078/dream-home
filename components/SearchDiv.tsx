@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { FilterData } from "../data/infoFile";
 
 const SearchDiv = () => {
   return <Search />;
@@ -16,20 +17,20 @@ const PropertyCard = () => (
 );
 
 const PropertyData = [1, 3, 4, 5, 5, 6, 6, 6, 9, 0, 0, 23, 32];
-const FilterData = [1, 3, 4, 5, 5];
 
 interface filterType {
   id: number;
+  data: string[];
 }
 
-const Filter: FC<filterType> = ({ id }) => (
+const Filter: FC<filterType> = ({ id, data }) => (
   <select defaultValue="test" className="select select-bordered max-w-xs">
     <option disabled selected>
       Filter {id}
     </option>
-    <option>Option 1</option>
-    <option>Option 2</option>
-    <option>Option 3</option>
+    {data.map((val, id) => (
+      <option key={id}>{val}</option>
+    ))}
   </select>
 );
 
@@ -39,7 +40,7 @@ function Search() {
       <div className="w-full  px-5 flex lg:flex-row sm:flex-col gap-3 items-center ">
         <div className=" h-full border-primary rounded-lg flex px-5 items-center gap-4 flex-wrap ">
           {FilterData.map((fish, id) => (
-            <Filter id={id} key={id} />
+            <Filter id={id} key={id} data={fish} />
           ))}
         </div>
         <button className="btn hover:bg-primary-active btn-primary lg:flex-1 mr-5 text-lg sm:w-[90%] ">
