@@ -32,9 +32,6 @@ const NavBar = () => {
               <Link href="/register">Register</Link>
             </li>
             <li>
-              <Link href={`/register/${LeaseIndex}`}>Lease</Link>
-            </li>
-            <li>
               <Link href="/about">About</Link>
             </li>
           </ul>
