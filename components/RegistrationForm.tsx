@@ -3,6 +3,10 @@ import ClientForm from "./ClientForm";
 import StaffFrom from "./StaffForm";
 import ClientInterestForm from "./ClientInterestForm";
 import BranchForm from "./BranchForm";
+import OwnerForm from "./OwnerForm";
+import PropertyForm from "./PropertyForm";
+import PropertyReviewForm from "./PropertyReviewForm";
+import LeaseForm from "./LeaseForm";
 
 const INPUT_INFO = [true, false, true, true, true, false, true, true];
 
@@ -15,7 +19,12 @@ const RegistrationForm: FC<{
         {/* <ClientForm /> */}
         {/* <StaffFrom /> */}
         {/* <ClientInterestForm /> */}
-        <BranchForm />
+        {/* <OwnerForm /> */}
+        {/* <BranchForm /> */}
+
+        {/* <OwnerForm /> */}
+        {/* <PropertyForm /> */}
+        <LeaseForm />
       </div>
     </div>
   );
