@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaUserAlt } from "react-icons/fa";
-import { LeaseIndex } from "../data/infoFile";
 
 const NavBar = () => {
   return (
