@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model branch {
+  bid              String             @id @db.VarChar(10)
+  b_add            String?            @db.VarChar(100)
+  mid              String?            @db.VarChar(10)
+  loc              String?            @db.VarChar(50)
+  client_int       client_int[]
+  manager          manager[]
+  property         property[]
+  telephone_branch telephone_branch[]
+}
+
+model bussiness {
+  bussid       String  @id @db.VarChar(10)
+  type         String? @default("NONE") @db.VarChar(20)
+  id           Int?
+  contact_name String? @db.VarChar(30)
+}
+
+model client {
+  cid         String        @id @db.VarChar(10)
+  cname       String?       @db.VarChar(20)
+  client_int  client_int[]
+  lease       lease[]
+  prop_review prop_review[]
+}
+
+model client_int {
+  cid        String  @db.VarChar(10)
+  type       String  @db.VarChar(20)
+  branch_loc String  @db.VarChar(50)
+  bid        String? @db.VarChar(10)
+  max_rent   Float   @db.Float
+  reg_by     String? @db.VarChar(30)
+  reg_date   String? @db.VarChar(20)
+  client     client  @relation(fields: [cid], references: [cid], onDelete: NoAction, onUpdate: NoAction, map: "client_int_ibfk_1")
+  branch     branch? @relation(fields: [bid], references: [bid], onDelete: NoAction, onUpdate: NoAction, map: "client_int_ibfk_2")
+
+  @@id([cid, type, branch_loc, max_rent])
+  @@index([bid], map: "bid")
+}
+
+model lease {
+  pid          String   @db.VarChar(10)
+  cid          String   @db.VarChar(10)
+  rent         Float?   @db.Float
+  payment_meth String?  @db.VarChar(20)
+  deposit      Boolean?
+  start_date   String?  @db.VarChar(20)
+  end_date     String?  @db.VarChar(20)
+  duration     Float?   @db.Float
+  property     property @relation(fields: [pid], references: [pid], onDelete: NoAction, onUpdate: NoAction, map: "lease_ibfk_1")
+  client       client   @relation(fields: [cid], references: [cid], onDelete: NoAction, onUpdate: NoAction, map: "lease_ibfk_2")
+
+  @@id([pid, cid])
+  @@index([cid], map: "cid")
+}
+
+model manager {
+  mid        String  @id @db.VarChar(10)
+  start_date String? @db.VarChar(15)
+  bonus      Int?
+  bid        String? @db.VarChar(10)
+  branch     branch? @relation(fields: [bid], references: [bid], onDelete: NoAction, onUpdate: NoAction, map: "manager_ibfk_1")
+  staff      staff[]
+
+  @@index([bid], map: "bid")
+}
+
+model owner {
+  oid           String          @id @db.VarChar(10)
+  oname         String?         @db.VarChar(30)
+  addr          String?         @db.VarChar(50)
+  bussid        String?         @default("00") @db.VarChar(10)
+  phone_numbers phone_numbers[]
+  property      property[]
+}
+
+model phone_numbers {
+  id           Int    @id @default(autoincrement())
+  oid          String @db.VarChar(10)
+  phone_number String @db.VarChar(100)
+  owner        owner  @relation(fields: [oid], references: [oid], onDelete: NoAction, onUpdate: NoAction, map: "phone_numbers_ibfk_1")
+
+  @@index([oid], map: "oid")
+}
+
+model prop_review {
+  pid      String   @db.VarChar(10)
+  cid      String   @db.VarChar(10)
+  comments String?  @db.VarChar(200)
+  date     String?  @db.VarChar(20)
+  property property @relation(fields: [pid], references: [pid], onDelete: NoAction, onUpdate: NoAction, map: "prop_review_ibfk_1")
+  client   client   @relation(fields: [cid], references: [cid], onDelete: NoAction, onUpdate: NoAction, map: "prop_review_ibfk_2")
+
+  @@id([pid, cid])
+  @@index([cid], map: "cid")
+}
+
+model property {
+  pid         String        @id @db.VarChar(10)
+  type        String?       @db.VarChar(20)
+  rooms       Float?        @db.Float
+  rent        Float?        @db.Float
+  prop_addr   String?       @db.VarChar(50)
+  oid         String?       @db.VarChar(10)
+  reg_by      String?       @db.VarChar(30)
+  reg_at      String?       @db.VarChar(10)
+  lease       lease[]
+  prop_review prop_review[]
+  owner       owner?        @relation(fields: [oid], references: [oid], onDelete: NoAction, onUpdate: NoAction, map: "property_ibfk_1")
+  branch      branch?       @relation(fields: [reg_at], references: [bid], onDelete: NoAction, onUpdate: NoAction, map: "property_ibfk_2")
+
+  @@index([oid], map: "oid")
+  @@index([reg_at], map: "reg_at")
+}
+
+model staff {
+  sid      String   @id @db.VarChar(10)
+  name     String?  @db.VarChar(30)
+  sex      String?  @db.VarChar(20)
+  dob      String?  @db.VarChar(20)
+  position String?  @db.VarChar(20)
+  salary   Float?   @db.Float
+  ssid     String?  @db.VarChar(10)
+  mid      String?  @db.VarChar(10)
+  manager  manager? @relation(fields: [mid], references: [mid], onDelete: NoAction, onUpdate: NoAction, map: "staff_ibfk_1")
+
+  @@index([mid], map: "mid")
+}
+
+model telephone_branch {
+  id           Int    @id @default(autoincrement())
+  bid          String @db.VarChar(10)
+  phone_number String @db.VarChar(100)
+  branch       branch @relation(fields: [bid], references: [bid], onDelete: NoAction, onUpdate: NoAction, map: "telephone_branch_ibfk_1")
+
+  @@index([bid], map: "bid")
+}
