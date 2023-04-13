@@ -5,4 +5,4 @@ export async function getDataFromQuery(query: queryType) {
   return data;
 }
 
-type queryType = "branch" | "owner" | "staff" | "property" | "client";
+export type queryType = "branch" | "owner" | "staff" | "property" | "client";

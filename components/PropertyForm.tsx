@@ -37,6 +37,7 @@ const PropertyForm = () => {
           <option key={id}>{info}</option>
         ))}
       </select>
+      <button className="btn btn-primary w-[60%] text-lg my-5">Register</button>
     </>
   );
 };

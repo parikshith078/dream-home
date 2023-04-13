@@ -1,4 +1,4 @@
-export const FromType = [
+export const FormType = [
   "Client Interest",
   "Staff",
   "Client",
@@ -6,7 +6,13 @@ export const FromType = [
   "Property",
   "Branch",
 ];
-
+export type formType =
+  | "Client Interest"
+  | "Staff"
+  | "Client"
+  | "Property Review"
+  | "Property"
+  | "Branch";
 export const PropertyType = ["Land", "House", "Falt"];
 
 export const PriceRange = ["Under 20k", "20k - 40k", "40k - 60k", "60k above"];

@@ -1,7 +1,7 @@
 function PropertyReviewForm() {
   return (
     <>
-      <h1 className="text-2xl font-bold my-4">Property Register</h1>
+      <h1 className="text-2xl font-bold my-4">Property Review </h1>
       <input
         type="text"
         placeholder="Comment"
@@ -18,6 +18,7 @@ function PropertyReviewForm() {
           className="input input-bordered w-full max-w-xs"
         />
       </div>
+      <button className="btn btn-primary w-[60%] text-lg my-5">Register</button>
     </>
   );
 }
