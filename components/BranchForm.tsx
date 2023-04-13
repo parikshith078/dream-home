@@ -5,7 +5,6 @@ const BranchForm = () => {
       <h1 className="text-2xl font-bold my-4">
         Branch and Manager Registration
       </h1>
-      {/* TODO: Branch Id auto gen  */}
       <input
         type="text"
         placeholder="Address"

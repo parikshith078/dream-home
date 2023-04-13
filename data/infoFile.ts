@@ -1,10 +1,11 @@
 export const FormType = [
+  "Branch",
   "Client Interest",
   "Staff",
   "Client",
   "Property Review",
   "Property",
-  "Branch",
+  "Lease",
 ];
 export type formType =
   | "Client Interest"
@@ -13,12 +14,18 @@ export type formType =
   | "Property Review"
   | "Property"
   | "Branch";
-export const PropertyType = ["Land", "House", "Falt"];
+export const PropertyType = ["Type", "Land", "House", "Falt"];
 
-export const PriceRange = ["Under 20k", "20k - 40k", "40k - 60k", "60k above"];
+export const PriceRange = [
+  "Price",
+  "Under 20k",
+  "20k - 40k",
+  "40k - 60k",
+  "60k above",
+];
 
 // Todo: query db for data
-export const BranchList = ["New York", "California", "Testing"];
+export const BranchList = ["Branch"];
 
 export const FilterData = [PropertyType, PriceRange, BranchList];
 

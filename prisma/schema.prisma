@@ -8,7 +8,7 @@ datasource db {
 }
 
 model branch {
-  bid              String             @id @db.VarChar(10)
+  bid              String             @id @default(uuid()) @db.VarChar(10)
   b_add            String?            @db.VarChar(100)
   mid              String?            @db.VarChar(10)
   loc              String?            @db.VarChar(50)

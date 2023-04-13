@@ -1,6 +1,22 @@
-import { BranchList, PropertyType } from "../data/infoFile";
+"use client";
+import { getDataFromQuery } from "../data/dataQuery";
+import { PropertyType } from "../data/infoFile";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const ClientInterestForm = () => {
+  const [data, setData] = useState<any>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getDataFromQuery("branch");
+      setData(result);
+    };
+    fetchData();
+  }, []);
+
+  const branchList = data.map((item) => item.loc);
+  const branchId = data.map((item) => item.bid);
+
   return (
     <>
       <h1 className="text-2xl font-bold my-4">Client Interest</h1>
@@ -18,7 +34,7 @@ const ClientInterestForm = () => {
           Branch name
         </option>
         {/* TODO: Query for db for branch info */}
-        {BranchList.map((info, id) => (
+        {branchList.map((info, id) => (
           <option key={id}>{info}</option>
         ))}
       </select>
@@ -27,7 +43,7 @@ const ClientInterestForm = () => {
           Branch Id
         </option>
         {/* TODO: Query for db for branch info */}
-        {BranchList.map((info, id) => (
+        {branchId.map((info, id) => (
           <option key={id}>{info}</option>
         ))}
       </select>

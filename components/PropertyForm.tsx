@@ -1,6 +1,20 @@
+"use client";
+import { getDataFromQuery } from "../data/dataQuery";
+import { useEffect, useState } from "react";
 import { PropertyType } from "../data/infoFile";
 
 const PropertyForm = () => {
+  const [data, setData] = useState<any>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getDataFromQuery("owner");
+      setData(result);
+    };
+    fetchData();
+  }, []);
+
+  const ownerId = data.map((item) => item.oid);
   return (
     <>
       <h1 className="text-2xl font-bold my-4">Property Register</h1>
@@ -33,7 +47,7 @@ const PropertyForm = () => {
           Owner ID
         </option>
         {/*TODO: query woner ids form db*/}
-        {PropertyType.map((info, id) => (
+        {ownerId.map((info, id) => (
           <option key={id}>{info}</option>
         ))}
       </select>

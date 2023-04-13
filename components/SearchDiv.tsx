@@ -1,5 +1,7 @@
-import { FC } from "react";
-import { FilterData } from "../data/infoFile";
+"use client";
+import { FC, useEffect, useState } from "react";
+import { getDataFromQuery, getDateFromTableFiled } from "../data/dataQuery";
+import { PriceRange, PropertyType } from "../data/infoFile";
 
 const SearchDiv = () => {
   return <Search />;
@@ -7,11 +9,24 @@ const SearchDiv = () => {
 
 export default SearchDiv;
 
-const PropertyCard = () => (
+const PropertyCard = ({ data }) => (
   <div className="card w-96 bg-secondary shadow-xl">
     <div className="card-body">
-      <h2 className="card-title">Property title</h2>
-      <p>Property Info</p>
+      <h2 className="card-title">{data.prop_addr}</h2>
+      <div className="grid grid-rows-2 grid-flow-col gap-4">
+        <p>
+          Rent: <b>₹{data.rent}</b>
+        </p>
+        <p>
+          Staff: <b> {data.reg_by}</b>
+        </p>{" "}
+        <p>
+          Type: <b> {data.type}</b>
+        </p>
+        <p>
+          Rooms: <b> {data.rooms}</b>
+        </p>
+      </div>
     </div>
   </div>
 );
@@ -35,6 +50,19 @@ const Filter: FC<filterType> = ({ id, data }) => (
 );
 
 function Search() {
+  const [branchNames, setBranchNames] = useState<any>([]);
+  const [propertyData, setPropertyData] = useState<any>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDateFromTableFiled("branch", "b_add");
+      setBranchNames(data);
+      const result = await getDataFromQuery("property");
+      setPropertyData(result);
+      console.log(result);
+    };
+    fetchData();
+  }, []);
+  const FilterData = [PropertyType, PriceRange, ["Branch", ...branchNames]];
   return (
     <main className="w-screen h-screen flex flex-col gap-4 p-10 mt-5 ">
       <div className="w-full  px-5 flex lg:flex-row sm:flex-col gap-3 items-center ">
@@ -48,8 +76,8 @@ function Search() {
         </button>
       </div>
       <div className="flex  w-full  flex-wrap gap-5 p-5 justify-center h-[80%] overflow-scroll ">
-        {PropertyData.map((fish, id) => (
-          <PropertyCard key={id} />
+        {propertyData.map((fish, id) => (
+          <PropertyCard key={id} data={fish} />
         ))}
       </div>
     </main>
