@@ -14,15 +14,9 @@ export type formType =
   | "Property Review"
   | "Property"
   | "Branch";
-export const PropertyType = ["Type", "Land", "House", "Falt"];
+export const PropertyType = ["land", "villa", "flat"];
 
-export const PriceRange = [
-  "Price",
-  "Under 20k",
-  "20k - 40k",
-  "40k - 60k",
-  "60k above",
-];
+export const PriceRange = ["Under 20k", "20k - 40k", "40k - 60k", "60k above"];
 
 // Todo: query db for data
 export const BranchList = ["Branch"];
