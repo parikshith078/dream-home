@@ -5,7 +5,6 @@ import {
   getDataFromQuery,
   getDateFromTableFiled,
   getFilterProperties,
-  getFilterPropertyType,
 } from "../data/dataQuery";
 import { PriceRange, priceRange, propertyType } from "../data/infoFile";
 import Loading from "./Loading";
@@ -43,7 +42,6 @@ function Search() {
         setPropertyData(result);
         setFirstLoad(false);
       }
-      setLoading(false);
       // const result = await getDataFromQuery("property");
       // setPropertyData(result);
 
@@ -72,6 +70,11 @@ function Search() {
   function handelSearch(event: any) {
     //TODO: use query to get data from database to filter data
     event.preventDefault();
+    setFilter({
+      branch: "All Branches",
+      type: "All Types",
+      price: "All Price",
+    });
   }
 
   return (
@@ -110,7 +113,7 @@ function Search() {
           onClick={handelSearch}
           className="btn hover:bg-primary-active btn-primary lg:flex-1 mr-5 text-lg sm:w-[90%] "
         >
-          Search
+          Reset Filters
         </button>
       </div>
       <div className="flex  w-full  flex-wrap gap-5 p-5 justify-center h-[80%] overflow-scroll ">

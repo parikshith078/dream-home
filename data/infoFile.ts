@@ -14,7 +14,7 @@ export type formType =
   | "Property Review"
   | "Property"
   | "Branch";
-export const propertyType = ["All Types", "Land", "villa", "Flat"];
+export const propertyType = ["Land", "villa", "Flat"];
 
 export const priceRange: PriceRange[] = [
   "Under 20k",

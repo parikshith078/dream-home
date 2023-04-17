@@ -2,7 +2,7 @@ import { FilterType } from "../components/SearchDiv";
 import { PriceRange } from "./infoFile";
 
 export async function getDataFromQuery(query: queryType) {
-  const res = await fetch("http://localhost:3000/api/getData/" + query);
+  const res = await fetch("/api/getData/" + query);
   const data = await res.json();
   return data;
 }
@@ -10,7 +10,7 @@ export async function getDataFromQuery(query: queryType) {
 export async function getFilterProperties(filter: FilterType) {
   // TODO: add branch filter function
   const res = await fetch(
-    "http://localhost:3000/api/filter/" +
+    "/api/filter/" +
       "all" +
       "/" +
       parseString(filter.type) +
@@ -21,7 +21,7 @@ export async function getFilterProperties(filter: FilterType) {
   return data;
 }
 export async function getDateFromTableFiled(query: queryType, field: string) {
-  const res = await fetch("http://localhost:3000/api/getData/" + query);
+  const res = await fetch("/api/getData/" + query);
   const data = await res.json();
   const result = data.map((item: any) => item[field]);
   return result;
