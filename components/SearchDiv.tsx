@@ -1,7 +1,14 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import { getDataFromQuery, getDateFromTableFiled } from "../data/dataQuery";
-import { PriceRange, PropertyType } from "../data/infoFile";
+import {
+  PropertyType,
+  getDataFromQuery,
+  getDateFromTableFiled,
+  getFilterProperties,
+  getFilterPropertyType,
+} from "../data/dataQuery";
+import { PriceRange, priceRange, propertyType } from "../data/infoFile";
+import Loading from "./Loading";
 
 const SearchDiv = () => {
   return <Search />;
@@ -9,26 +16,53 @@ const SearchDiv = () => {
 
 export default SearchDiv;
 
+export type FilterType = {
+  branch: string;
+  type: PropertyType;
+  price: PriceRange;
+};
+
 function Search() {
   const [branchNames, setBranchNames] = useState<any>([]);
   const [propertyData, setPropertyData] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [firstLoad, setFirstLoad] = useState<boolean>(true);
+
+  const [filter, setFilter] = useState<FilterType>({
+    branch: "All Branches",
+    type: "All Types",
+    price: "All Price",
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getDateFromTableFiled("branch", "b_add");
       setBranchNames(data);
-      const result = await getDataFromQuery("property");
-      setPropertyData(result);
+      if (firstLoad) {
+        const result = await getDataFromQuery("property");
+        setPropertyData(result);
+        setFirstLoad(false);
+      }
+      setLoading(false);
+      // const result = await getDataFromQuery("property");
+      // setPropertyData(result);
+
+      if (!firstLoad) {
+        const filteredProperties = await getFilterProperties(filter);
+        setPropertyData(filteredProperties["data"]);
+        console.log("filteredProperties");
+        console.log(filteredProperties["data"]);
+      }
     };
+
+    setLoading(true);
     fetchData();
-  }, []);
-  const HoldPropertyData = propertyData;
-  console.log("propertyData");
-  console.log(HoldPropertyData);
-  const [filter, setFilter] = useState<any>({
-    branch: "All Branches",
-    type: "All Types",
-    price: "All Prices",
-  });
+    setLoading(false);
+  }, [filter]);
+
+  // const HoldPropertyData = propertyData;
+  // console.log("propertyData");
+  // console.log(HoldPropertyData);
 
   const handelSelect = (e: any) => {
     const { name, value } = e.target;
@@ -43,24 +77,30 @@ function Search() {
   return (
     <main className="w-screen h-screen flex flex-col gap-4 p-10 mt-5 ">
       <div className="w-full  px-5 flex lg:flex-row sm:flex-col gap-3 items-center ">
+        {loading && <Loading />}
+        {propertyData.length === 0 && !loading && (
+          <h1 className=" text-3xl text-red-300 absolute top-[30%] left-[40%]  ">
+            No Data Found
+          </h1>
+        )}
         <div className=" h-full border-primary rounded-lg flex px-5 items-center gap-4 flex-wrap ">
           <FilterComponent
             name="branch"
             data={branchNames}
             handleFilter={handelSelect}
-            title="Branch"
+            title="All Branch"
             value={filter.branch}
           />
           <FilterComponent
             name="type"
-            data={PropertyType}
+            data={propertyType}
             handleFilter={handelSelect}
             title="All Types"
             value={filter.type}
           />
           <FilterComponent
             name="price"
-            data={PriceRange}
+            data={priceRange}
             handleFilter={handelSelect}
             title="All Price"
             value={filter.price}
@@ -92,7 +132,7 @@ const PropertyCard = ({ data }) => (
         </p>
         <p>
           Staff: <b> {data.reg_by}</b>
-        </p>{" "}
+        </p>
         <p>
           Type: <b> {data.type}</b>
         </p>

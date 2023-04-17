@@ -1,7 +1,7 @@
 "use client";
 import { getDataFromQuery } from "../data/dataQuery";
 import { useEffect, useState } from "react";
-import { PropertyType } from "../data/infoFile";
+import { propertyType } from "../data/infoFile";
 
 const PropertyForm = () => {
   const [data, setData] = useState<any>([]);
@@ -22,7 +22,7 @@ const PropertyForm = () => {
         <option disabled selected>
           Property Type
         </option>
-        {PropertyType.map((info, id) => (
+        {propertyType.map((info, id) => (
           <option key={id}>{info}</option>
         ))}
       </select>

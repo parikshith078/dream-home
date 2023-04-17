@@ -14,13 +14,24 @@ export type formType =
   | "Property Review"
   | "Property"
   | "Branch";
-export const PropertyType = ["land", "villa", "flat"];
+export const propertyType = ["All Types", "Land", "villa", "Flat"];
 
-export const PriceRange = ["Under 20k", "20k - 40k", "40k - 60k", "60k above"];
+export const priceRange: PriceRange[] = [
+  "Under 20k",
+  "20k - 40k",
+  "40k - 60k",
+  "60k above",
+];
+export type PriceRange =
+  | "Under 20k"
+  | "20k - 40k"
+  | "40k - 60k"
+  | "60k above"
+  | "All Price";
 
 // Todo: query db for data
-export const BranchList = ["Branch"];
+export const BranchList = ["cranch"];
 
-export const FilterData = [PropertyType, PriceRange, BranchList];
+export const FilterData = [propertyType, priceRange, BranchList];
 
 export const PaymentType = ["Cash", "Others", "UPI"];

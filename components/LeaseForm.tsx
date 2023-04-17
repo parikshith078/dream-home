@@ -1,7 +1,7 @@
 "use client";
 import { getDataFromQuery } from "../data/dataQuery";
 import { useEffect, useState } from "react";
-import { PaymentType, PropertyType } from "../data/infoFile";
+import { PaymentType, propertyType } from "../data/infoFile";
 
 function LeaseForm() {
   const [data, setData] = useState<any>([]);

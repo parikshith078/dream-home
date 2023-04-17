@@ -1,6 +1,6 @@
 "use client";
 import { getDataFromQuery } from "../data/dataQuery";
-import { PropertyType } from "../data/infoFile";
+import { propertyType } from "../data/infoFile";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -24,7 +24,7 @@ const ClientInterestForm = () => {
         <option disabled selected>
           Property Type
         </option>
-        {PropertyType.map((info, id) => (
+        {propertyType.map((info, id) => (
           <option key={id}>{info}</option>
         ))}
       </select>
