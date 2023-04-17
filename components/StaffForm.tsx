@@ -1,8 +1,26 @@
 "use client";
+import { getDataFromQuery } from "../data/dataQuery";
+import { useState, useEffect } from "react";
 
 import { FC } from "react";
 
 const StaffFrom: FC<{}> = () => {
+  const [data, setData] = useState<any>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getDataFromQuery("staff");
+      setData(result);
+    };
+    fetchData();
+  }, []);
+  const supervisors = data.filter(
+    (employee) => employee.position === "Supervisor"
+  );
+
+  const managers = data.filter((employee) => employee.position === "Manager");
+
+  const supervisorNames = supervisors.map((supervisor) => supervisor.name);
+  const managerNames = managers.map((manager) => manager.name);
   return (
     <>
       <h1 className="text-2xl font-bold my-4">Staff Registration</h1>
@@ -36,15 +54,22 @@ const StaffFrom: FC<{}> = () => {
         <option>Assistant</option>
         <option>Supervisor</option>
       </select>
+      {/*      // TODO: Condtionaly block supervisor and manager. */}
       <select className="select select-primary w-full max-w-xs">
         <option disabled selected>
           Supervisor
         </option>
-        {/* TODO: query form db */}
-        <option>Game </option>
-        <option>Lost</option>
-        <option>Breaking </option>
-        <option>Walking </option>
+        {supervisorNames.map((name, id) => (
+          <option key={id}>{name} </option>
+        ))}
+      </select>
+      <select className="select select-primary w-full max-w-xs">
+        <option disabled selected>
+          Manager
+        </option>
+        {managerNames.map((name, id) => {
+          return <option key={id}>{name} </option>;
+        })}
       </select>
       <input
         type="number"

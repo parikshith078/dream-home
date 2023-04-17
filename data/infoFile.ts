@@ -1,19 +1,37 @@
-export const FromType = [
+export const FormType = [
+  "Branch",
   "Client Interest",
   "Staff",
   "Client",
   "Property Review",
   "Property",
-  "Branch",
+  "Lease",
 ];
+export type formType =
+  | "Client Interest"
+  | "Staff"
+  | "Client"
+  | "Property Review"
+  | "Property"
+  | "Branch";
+export const propertyType = ["Land", "villa", "Flat"];
 
-export const PropertyType = ["Land", "House", "Falt"];
-
-export const PriceRange = ["Under 20k", "20k - 40k", "40k - 60k", "60k above"];
+export const priceRange: PriceRange[] = [
+  "Under 20k",
+  "20k - 40k",
+  "40k - 60k",
+  "60k above",
+];
+export type PriceRange =
+  | "Under 20k"
+  | "20k - 40k"
+  | "40k - 60k"
+  | "60k above"
+  | "All Price";
 
 // Todo: query db for data
-export const BranchList = ["New York", "California", "Testing"];
+export const BranchList = ["cranch"];
 
-export const FilterData = [PropertyType, PriceRange, BranchList];
+export const FilterData = [propertyType, priceRange, BranchList];
 
 export const PaymentType = ["Cash", "Others", "UPI"];
