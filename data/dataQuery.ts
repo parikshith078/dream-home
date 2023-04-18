@@ -11,7 +11,7 @@ export async function getFilterProperties(filter: FilterType) {
   // TODO: add branch filter function
   const res = await fetch(
     "/api/filter/" +
-      "all" +
+      parseString(filter.branch) +
       "/" +
       parseString(filter.type) +
       "/" +

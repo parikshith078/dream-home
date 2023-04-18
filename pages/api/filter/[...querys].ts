@@ -47,6 +47,6 @@ function branchFilter(input: string): { b_add: string } | {} {
   if (input === "all") {
     return {};
   } else {
-    return { b_add: input };
+    return { loc: input };
   }
 }

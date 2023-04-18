@@ -35,7 +35,7 @@ function Search() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getDateFromTableFiled("branch", "b_add");
+      const data = await getDateFromTableFiled("branch", "loc");
       setBranchNames(data);
       if (firstLoad) {
         const result = await getDataFromQuery("property");
