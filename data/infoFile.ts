@@ -35,3 +35,9 @@ export const BranchList = ["cranch"];
 export const FilterData = [propertyType, priceRange, BranchList];
 
 export const PaymentType = ["Cash", "Others", "UPI"];
+
+export const sendData = async (data: string) => {
+  await fetch("api/query" + data)
+    .then(() => alert("Data Sent"))
+    .catch(() => alert("Error"));
+};

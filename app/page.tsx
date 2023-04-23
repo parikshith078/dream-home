@@ -5,7 +5,7 @@ const HomePage = () => {
     <div className=" w-full  xs:h-[80%] mt-10 p-10 flex justify-center lg:flex-row xs:flex-col gap-3">
       <MainBtn text="Search" style="btn-primary " link="search" />
       <MainBtn text="Register" style="btn-secondary " link="register" />
-      <MainBtn text="Lease" style="btn-accent " link={`register/${6}`} />
+      <MainBtn text="Work bench" style="btn-accent " link={`editor`} />
     </div>
   );
 };

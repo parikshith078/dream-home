@@ -6,7 +6,7 @@ const Hoc = (props: any) => {
     <>
       <NavBar />
       <div className=" absolute top-14">
-        <main className="w-screen h-screen mb-10  ">{props.children}</main>
+           <main className="w-screen h-screen mb-10  ">{props.children}</main>
         <Footer />
       </div>
     </>

@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   PropertyType,
   getDataFromQuery,
@@ -68,7 +68,6 @@ function Search() {
   };
 
   function handelSearch(event: any) {
-    //TODO: use query to get data from database to filter data
     event.preventDefault();
     setFilter({
       branch: "All Branches",

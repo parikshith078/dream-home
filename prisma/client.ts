@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 declare global {
   namespace NodeJS {
-    interface Global {}
+    interface Global { }
   }
 }
 
@@ -10,8 +10,8 @@ interface CustomNodeJsGlobal extends NodeJS.Global {
   prisma: PrismaClient;
 }
 
-declare const global: CustomNodeJsGlobal;
+// declare const global: CustomNodeJsGlobal;
 
-const prisma = global.prisma || new PrismaClient();
+const prisma = new PrismaClient();
 
 export default prisma;

@@ -11,7 +11,7 @@ export default async function handler(
     const branch: fetchQueryType = querys[0];
     const type: fetchQueryType = querys[1];
     const price: fetchQueryType = querys[2];
-    const info = [branch, type, price];
+    // const info = [branch, type, price];
     /* const filter: any[] = []; */
 
     // Loop through the parameters and add conditions to the filter object    // info.forEach((param: any, index: any) => {

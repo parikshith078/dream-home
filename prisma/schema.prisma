@@ -23,14 +23,16 @@ model bussiness {
   type         String? @default("NONE") @db.VarChar(20)
   id           Int?
   contact_name String? @db.VarChar(30)
+  owner_id     String? @db.VarChar(30)
 }
 
 model client {
-  cid         String        @id @db.VarChar(10)
-  cname       String?       @db.VarChar(20)
-  client_int  client_int[]
-  lease       lease[]
-  prop_review prop_review[]
+  cid            String           @id @db.VarChar(10)
+  cname          String?          @db.VarChar(20)
+  client_int     client_int[]
+  client_numbers client_numbers[]
+  lease          lease[]
+  prop_review    prop_review[]
 }
 
 model client_int {
@@ -106,18 +108,21 @@ model prop_review {
 }
 
 model property {
-  pid         String        @id @db.VarChar(10)
-  type        String?       @db.VarChar(20)
-  rooms       Float?        @db.Float
-  rent        Float?        @db.Float
-  prop_addr   String?       @db.VarChar(50)
-  oid         String?       @db.VarChar(10)
-  reg_by      String?       @db.VarChar(30)
-  reg_at      String?       @db.VarChar(10)
-  lease       lease[]
-  prop_review prop_review[]
-  owner       owner?        @relation(fields: [oid], references: [oid], onDelete: NoAction, onUpdate: NoAction, map: "property_ibfk_1")
-  branch      branch?       @relation(fields: [reg_at], references: [bid], onDelete: NoAction, onUpdate: NoAction, map: "property_ibfk_2")
+  pid                                       String          @id @db.VarChar(10)
+  type                                      String?         @db.VarChar(20)
+  rooms                                     Float?          @db.Float
+  rent                                      Float?          @db.Float
+  prop_addr                                 String?         @db.VarChar(50)
+  oid                                       String?         @unique @db.VarChar(10)
+  reg_by                                    String?         @db.VarChar(30)
+  reg_at                                    String?         @db.VarChar(10)
+  reg_date                                  String?         @db.VarChar(10)
+  advertisement_advertisement_pidToproperty advertisement[] @relation("advertisement_pidToproperty")
+  advertisement_advertisement_oidToproperty advertisement[] @relation("advertisement_oidToproperty")
+  lease                                     lease[]
+  prop_review                               prop_review[]
+  owner                                     owner?          @relation(fields: [oid], references: [oid], onDelete: NoAction, onUpdate: NoAction, map: "property_ibfk_1")
+  branch                                    branch?         @relation(fields: [reg_at], references: [bid], onDelete: NoAction, onUpdate: NoAction, map: "property_ibfk_2")
 
   @@index([oid], map: "oid")
   @@index([reg_at], map: "reg_at")
@@ -144,4 +149,25 @@ model telephone_branch {
   branch       branch @relation(fields: [bid], references: [bid], onDelete: NoAction, onUpdate: NoAction, map: "telephone_branch_ibfk_1")
 
   @@index([bid], map: "bid")
+}
+
+model advertisement {
+  ad_id                                Int       @id
+  pid                                  String?   @db.VarChar(30)
+  oid                                  String?   @db.VarChar(30)
+  ad_title                             String?   @db.VarChar(50)
+  property_advertisement_pidToproperty property? @relation("advertisement_pidToproperty", fields: [pid], references: [pid], onDelete: NoAction, onUpdate: NoAction, map: "advertisement_ibfk_1")
+  property_advertisement_oidToproperty property? @relation("advertisement_oidToproperty", fields: [oid], references: [oid], onDelete: NoAction, onUpdate: NoAction, map: "advertisement_ibfk_2")
+
+  @@index([oid], map: "oid")
+  @@index([pid], map: "pid")
+}
+
+model client_numbers {
+  id            Int    @id @default(autoincrement())
+  cid           String @db.VarChar(10)
+  client_number String @db.VarChar(100)
+  client        client @relation(fields: [cid], references: [cid], onDelete: NoAction, onUpdate: NoAction, map: "client_numbers_ibfk_1")
+
+  @@index([cid], map: "cid")
 }

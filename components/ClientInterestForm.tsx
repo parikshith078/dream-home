@@ -14,8 +14,8 @@ const ClientInterestForm = () => {
     fetchData();
   }, []);
 
-  const branchList = data.map((item) => item.loc);
-  const branchId = data.map((item) => item.bid);
+  const branchList = data.map((item: any) => item.loc);
+  const branchId = data.map((item: any) => item.bid);
 
   return (
     <>
@@ -34,7 +34,7 @@ const ClientInterestForm = () => {
           Branch name
         </option>
         {/* TODO: Query for db for branch info */}
-        {branchList.map((info, id) => (
+        {branchList.map((info: any, id: any) => (
           <option key={id}>{info}</option>
         ))}
       </select>
@@ -43,7 +43,7 @@ const ClientInterestForm = () => {
           Branch Id
         </option>
         {/* TODO: Query for db for branch info */}
-        {branchId.map((info, id) => (
+        {branchId.map((info: any, id: any) => (
           <option key={id}>{info}</option>
         ))}
       </select>

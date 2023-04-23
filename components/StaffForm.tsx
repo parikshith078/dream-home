@@ -42,7 +42,7 @@ const StaffFrom: FC<{}> = () => {
       </div>
       <select className="select select-primary w-full max-w-xs">
         <option disabled selected className=" font-light">
-          Sex
+          Gender
         </option>
         <option>Male</option>
         <option>Female</option>
