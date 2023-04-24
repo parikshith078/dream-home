@@ -6,6 +6,7 @@ export const FormType = [
   "Property Review",
   "Property",
   "Lease",
+  "Owner",
 ];
 export type formType =
   | "Client Interest"
