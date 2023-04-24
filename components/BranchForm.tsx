@@ -1,9 +1,8 @@
 "use client";
 import { uuid } from "uuidv4";
 import { useState } from "react";
-import prisma from "../prisma/client";
 
-interface BranchFormType {
+export interface BranchFormType {
   address: string;
   telephone: number;
   location: string;
@@ -13,15 +12,45 @@ interface BranchFormType {
   managerGender: string;
   managerStartDate: any;
   bonus: number;
+  branchId: any;
+  ssid: any;
+  sid: any;
+  mid: any;
+  id: any;
+  position: "Manager" | "staff" | "supervisor";
 }
 
 const BranchForm = () => {
-  const branchId = uuid();
-  const ssid = null;
-  const sid = uuid();
-  const mid = uuid();
-  const id = uuid();
-  const position = "Manager";
+  const HandelClick = async () => {
+    const data = await fetch("/api/mysql/postBranch", {
+      method: "POST",
+      body: JSON.stringify(branchData),
+    });
+    const res = await data.json();
+    console.log(res);
+    if (res.hasOwnProperty("error")) {
+      alert("Error adding branch");
+      return;
+    }
+    alert("Branch and Manager added successfully");
+    setBranchData({
+      address: "",
+      telephone: 0,
+      location: "",
+      managerName: "",
+      managerDOB: "",
+      managerSalary: 0,
+      managerGender: "",
+      managerStartDate: "",
+      bonus: 0,
+      branchId: uuid(),
+      ssid: null,
+      sid: uuid(),
+      mid: uuid(),
+      id: uuid(),
+      position: "Manager",
+    });
+  };
 
   const [branchData, setBranchData] = useState<BranchFormType>({
     address: "",
@@ -33,6 +62,12 @@ const BranchForm = () => {
     managerGender: "",
     managerStartDate: "",
     bonus: 0,
+    branchId: uuid(),
+    ssid: null,
+    sid: uuid(),
+    mid: uuid(),
+    id: uuid(),
+    position: "Manager",
   });
 
   const handelChange = (e: any) => {
@@ -150,7 +185,12 @@ const BranchForm = () => {
           className="input input-bordered w-full max-w-xs"
         />
       </div>
-      <button className="btn btn-primary w-[60%] text-lg my-5">Register</button>
+      <button
+        onClick={HandelClick}
+        className="btn btn-primary w-[60%] text-lg my-5"
+      >
+        Register
+      </button>
     </>
   );
 };
